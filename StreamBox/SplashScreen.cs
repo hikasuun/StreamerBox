@@ -14,19 +14,24 @@ namespace StreamBox
     {
         public SplashScreen()
         {
-            // pass form here
-            // BaseForm baseForm = new
             InitializeComponent();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             panel2.Width += 10;
+            // add worker routines here
             if (panel2.Width >= 800)
             {
                 timer1.Stop();
                 this.Close();
+
             }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

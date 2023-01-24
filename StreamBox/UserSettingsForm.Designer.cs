@@ -28,20 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.SuspendLayout();
+            // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.vScrollBar1.Location = new System.Drawing.Point(540, 0);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(17, 671);
+            this.vScrollBar1.TabIndex = 0;
             // 
             // UserSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 815);
+            this.ClientSize = new System.Drawing.Size(557, 671);
+            this.Controls.Add(this.vScrollBar1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UserSettingsForm";
             this.ShowIcon = false;
-            this.Text = "UserSettings";
+            this.Text = "User Settings";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }

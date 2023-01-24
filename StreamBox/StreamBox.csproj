@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirstTimeUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FirstTimeUserForm.Designer.cs">
+      <DependentUpon>FirstTimeUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="UserSettingsForm.Designer.cs">
       <DependentUpon>UserSettingsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FirstTimeUserForm.resx">
+      <DependentUpon>FirstTimeUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>

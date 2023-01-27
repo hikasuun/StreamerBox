@@ -12,9 +12,22 @@ namespace StreamBox
 {
     public partial class SplashScreen : Form
     {
-        public SplashScreen()
+        private BaseForm form;
+        public string userName;
+        public TimeZoneInfo time;
+        public SplashScreen(BaseForm frm)
         {
             InitializeComponent();
+            form = frm;
+            // check for first time user
+            if (true)
+            {
+                FirstTimeUserForm Splashform = new FirstTimeUserForm(this);
+                Splashform.ShowDialog();
+                form.setUserName(userName);
+                form.setTimeZone(time);
+            }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -25,7 +38,6 @@ namespace StreamBox
             {
                 timer1.Stop();
                 this.Close();
-
             }
         }
 

@@ -28,25 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewStreamerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.TimeZoneStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.TimeStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.UsernameStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -66,7 +79,7 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(894, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(795, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -80,19 +93,41 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addNewStreamerToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // addNewStreamerToolStripMenuItem
+            // 
+            this.addNewStreamerToolStripMenuItem.Name = "addNewStreamerToolStripMenuItem";
+            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.addNewStreamerToolStripMenuItem.Text = "Add / Edit Streamer";
+            this.addNewStreamerToolStripMenuItem.Click += new System.EventHandler(this.addNewStreamerToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -101,16 +136,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(894, 765);
+            this.panel1.Size = new System.Drawing.Size(795, 830);
             this.panel1.TabIndex = 2;
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBar1.Location = new System.Drawing.Point(877, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 765);
-            this.vScrollBar1.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -126,54 +153,102 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(877, 765);
-            this.splitContainer1.SplitterDistance = 326;
+            this.splitContainer1.Size = new System.Drawing.Size(778, 830);
+            this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.TabIndex = 1;
             // 
-            // editToolStripMenuItem
+            // groupBox2
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addNewStreamerToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(778, 296);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Streams";
             // 
-            // addNewStreamerToolStripMenuItem
+            // flowLayoutPanel1
             // 
-            this.addNewStreamerToolStripMenuItem.Name = "addNewStreamerToolStripMenuItem";
-            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addNewStreamerToolStripMenuItem.Text = "Add / Edit Streamer";
-            this.addNewStreamerToolStripMenuItem.Click += new System.EventHandler(this.addNewStreamerToolStripMenuItem_Click);
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(772, 277);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Controls.Add(this.vScrollBar2);
+            this.groupBox1.Controls.Add(this.monthCalendar1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(853, 411);
+            this.groupBox1.Size = new System.Drawing.Size(778, 530);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calendar";
             // 
-            // groupBox2
+            // vScrollBar2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(12, 13);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(853, 301);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Streams";
+            this.vScrollBar2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.vScrollBar2.Location = new System.Drawing.Point(758, 16);
+            this.vScrollBar2.Name = "vScrollBar2";
+            this.vScrollBar2.Size = new System.Drawing.Size(17, 511);
+            this.vScrollBar2.TabIndex = 1;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(3, 3);
+            this.monthCalendar1.Location = new System.Drawing.Point(45, 25);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.vScrollBar1.Location = new System.Drawing.Point(778, 0);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(17, 830);
+            this.vScrollBar1.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TimeZoneStatus,
+            this.TimeStatus,
+            this.UsernameStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 832);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.statusStrip1.Size = new System.Drawing.Size(795, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // TimeZoneStatus
+            // 
+            this.TimeZoneStatus.Name = "TimeZoneStatus";
+            this.TimeZoneStatus.Size = new System.Drawing.Size(101, 17);
+            this.TimeZoneStatus.Text = "Current Timezone";
+            this.TimeZoneStatus.Click += new System.EventHandler(this.TimeZoneStatus_Click);
+            // 
+            // TimeStatus
+            // 
+            this.TimeStatus.Name = "TimeStatus";
+            this.TimeStatus.Size = new System.Drawing.Size(76, 17);
+            this.TimeStatus.Text = "Current Time";
+            // 
+            // UsernameStatus
+            // 
+            this.UsernameStatus.Name = "UsernameStatus";
+            this.UsernameStatus.Size = new System.Drawing.Size(94, 17);
+            this.UsernameStatus.Text = "Hello, Username";
             // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 789);
+            this.ClientSize = new System.Drawing.Size(795, 854);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -189,6 +264,11 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +289,13 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.VScrollBar vScrollBar2;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel TimeZoneStatus;
+        private System.Windows.Forms.ToolStripStatusLabel TimeStatus;
+        private System.Windows.Forms.ToolStripStatusLabel UsernameStatus;
     }
 }

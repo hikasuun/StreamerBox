@@ -12,6 +12,9 @@ namespace StreamBox
 {
     public partial class BaseForm : Form
     {
+        private string userName; // holds user's name
+        private TimeZoneInfo userTimeZone; // holds user's time zone
+
         public BaseForm()
         {
             InitializeComponent();
@@ -25,9 +28,12 @@ namespace StreamBox
         private void BaseForm_Load(object sender, EventArgs e)
         {
             this.Hide();
-            SplashScreen splashScreen = new SplashScreen();
+            SplashScreen splashScreen = new SplashScreen(this);
             splashScreen.ShowDialog();
             this.Show();
+            TimeStatus.Text = DateTime.Now.ToString("hh:mm tt") + "   ";
+            TimeZoneStatus.Text = userTimeZone.ToString() + "   ";
+            UsernameStatus.Text = "Hello, " + userName + "  ";
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,6 +56,39 @@ namespace StreamBox
             frm.Show();
             frm.TopMost= true;
             // show streamer settings
+        }
+
+        private void currentTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // getters and setters
+        public string getUserName()
+        {
+            return this.userName;
+        }
+        public TimeZoneInfo getTimeZone()
+        {
+            return this.userTimeZone;
+        }
+        public void setUserName(string name)
+        {
+            this.userName = name;
+        }
+        public void setTimeZone(TimeZoneInfo timeZone)
+        {
+            this.userTimeZone = timeZone;
+        }
+
+        private void TimeZoneStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
     }
 }

@@ -23,10 +23,13 @@ namespace StreamBox
             if (true)
             {
                 FirstTimeUserForm Splashform = new FirstTimeUserForm(this);
-                Splashform.ShowDialog();
+                Splashform.Show();
+                
                 form.setUserName(userName);
                 form.setTimeZone(time);
+                this.Close();
             }
+
             
         }
 
@@ -37,7 +40,6 @@ namespace StreamBox
             if (panel2.Width >= 800)
             {
                 timer1.Stop();
-                this.Close();
             }
         }
 

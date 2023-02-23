@@ -1,39 +1,40 @@
+# ScheduleScrapper.py
 from bs4 import BeautifulSoup
 import requests
 import re
 from datetime import datetime, timedelta
 import pytz
 
-urlList = ['https://schedule.hololive.tv/lives/english']
-currentDateInTokyo = datetime.now().date()
-previousDateInTokyo = (currentDateInTokyo - timedelta(days=1))
-nextDateInTokyo = (currentDateInTokyo + timedelta(days=1))
+urlList = ['https://schedule.hololive.tv/lives/hololive',
+           'https://schedule.hololive.tv/lives/english',
+           'https://schedule.hololive.tv/lives/indonesia']
+
+currentDateInTokyo = datetime.now(pytz.timezone("Asia/Tokyo")).date()
+previousDateInTokyo = (currentDateInTokyo - timedelta(1))
 
 with open('data', 'w', encoding='utf-8') as file:
     for url in urlList:
         # make url req. and scrape
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
+        # timeCheck is list to check if a new day has "rolled over"
+        timeCheck = [0]
+        # incrementedTime will determine how many days will be added to the base day
+        incrementedTime = 0
         for card in soup.find_all('div', 'col-6 col-sm-4 col-md-3') :
-            file.write(card.find('div', class_='col-4 col-sm-4 col-md-4 text-left datetime').text.replace(' ','').replace('\n', '') + 
-                       card.find('div', class_='col text-right name').text.replace(' ','')  + 
-                       card.find('a', href=re.compile('https://www\.youtube\.com/'))['href'] )
-            file.write('\n')
+            timeCheck.append(int(card.find('div', class_='col-4 col-sm-4 col-md-4 text-left datetime').text.replace(' ','').replace('\n', '').replace(':','')))
 
-                    
-
-''' PREVIOUS WORK FOR TRYING TO GET DATE EXTRACTED AND PLACED IN APPROPRIATE AREA
-        containers = soup.find_all('div', class_='container')
-        for container in containers:
-            if ( (container.find('div',style='padding-left:5px;padding-right: 5px;' )) is None ):
-                pass
+            if (timeCheck[len(timeCheck) - 1] >= timeCheck[len(timeCheck) - 2]):
+                file.write((previousDateInTokyo + timedelta (incrementedTime)).strftime("%d/%m/%Y\n"))
+            # if time rolls over i.e. next time is smaller than previous time, then increment
             else:
-                if (container.find('br') is not None):
-                    pass
-                for card in container.find_all('div', 'col-6 col-sm-4 col-md-3'):
-                    file.write(container.find('div', class_='holodule navbar-text').text.replace(' ','').replace('\n','')[0:6] + '\n')
-                    file.write(card.find('div', class_='col-4 col-sm-4 col-md-4 text-left datetime').text.replace(' ','').replace('\n', '') + 
-                               card.find('div', class_='col text-right name').text.replace(' ','')  + 
-                               card.find('a', href=re.compile('https://www\.youtube\.com/'))['href'] )
-                    file.write('\n')
-'''
+                incrementedTime = incrementedTime + 1
+                file.write( (previousDateInTokyo + timedelta (incrementedTime)).strftime("%d/%m/%Y\n") )
+                
+            # checking for boundary issue
+            if (card.find('a', href=re.compile('https://www\.youtube\.com/')) is not None):
+                # write to data file
+                file.write(card.find('div', class_='col-4 col-sm-4 col-md-4 text-left datetime').text.replace(' ','').replace('\n', ''))
+                file.write(card.find('div', class_='col text-right name').text.replace(' ','') )
+                file.write(card.find('a', href=re.compile('https://www\.youtube\.com/'))['href'] )
+                file.write('\n')

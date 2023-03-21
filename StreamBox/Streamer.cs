@@ -6,20 +6,30 @@ using System.Threading.Tasks;
 
 namespace StreamBox
 {
-    internal class Streamer
+     public class Streamer
     {
         private string streamerName; // holds streamer name
-        private string streamerPicture; // holds path to steamer image
+        private string streamerAlias; // holds alias for streamer
         private Uri twitterURL; // holds URL for streamer's twitter
-        private Uri twitchURL; // holds URL for streamer's twitch
         private Uri youtubeURL; // holds URL for streamer's youtube
-        private Uri wikiURL; // hold URL to streamer's wiki
+
+        public Streamer(string name, string alias, Uri twitter, Uri youtube)
+        {
+            this.streamerName = name;
+            this.streamerAlias = alias;
+            this.twitterURL = twitter;
+            this.youtubeURL = youtube;
+        }
 
         // getters and setters
-        string getStreamerName() { return streamerName; }
-        private string getStreamerPicture() { return streamerPicture; }
-        private Uri getTwitterURL() { return twitterURL; }
-
+        public string getStreamerName() { return streamerName; }
+        public string getStreamerAlias() { return streamerAlias; }
+        public Uri getTwitterURL() { return twitterURL; }
+        public Uri getYoutubeURL() { return youtubeURL; }
+        public void setStreamerName(string name) { this.streamerName = name; }
+        public void setStreamerAlias(string alias) { this.streamerAlias = alias; }
+        public void setTwitterURL(Uri url) { this.twitterURL = url; }
+        public void setYoutubeURL(Uri url) { this.youtubeURL= url; }
 
     }
 }

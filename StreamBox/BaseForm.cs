@@ -14,6 +14,8 @@ namespace StreamBox
     {
         private string userName; // holds user's name
         private TimeZoneInfo userTimeZone; // holds user's time zone
+        public List<Streamer> streamerList = new List<Streamer>(); // holds default list of streamers from Hololive
+        public List<StreamEvents> streamEvents = new List<StreamEvents>(); // holds list of streams from Hololive
 
         public BaseForm()
         {
@@ -30,10 +32,15 @@ namespace StreamBox
             this.Hide();
             SplashScreen splashScreen = new SplashScreen(this);
             splashScreen.ShowDialog();
-            this.Show();
+
+            monthCalendar.MinDate = DateTime.Now;
+            monthCalendar.MaxDate = DateTime.Now.AddDays(2);
+
             TimeStatus.Text = DateTime.Now.ToString("hh:mm tt") + "   ";
             TimeZoneStatus.Text = userTimeZone.ToString() + "   ";
             UsernameStatus.Text = "Hello, " + userName + "  ";
+
+            this.Show();
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,6 +87,14 @@ namespace StreamBox
         {
             this.userTimeZone = timeZone;
         }
+        public void addStreamerList(Streamer sObj)
+        {
+            this.streamerList.Add(sObj);
+        }
+        public void addEventList(StreamEvents sObj)
+        {
+            this.streamEvents.Add(sObj);
+        }
 
         private void TimeZoneStatus_Click(object sender, EventArgs e)
         {
@@ -89,6 +104,11 @@ namespace StreamBox
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Refresh();
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
         }
     }
 }

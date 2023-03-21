@@ -52,6 +52,7 @@ namespace StreamBox
             {
                 form.userName = userNameTxtBox.Text;
                 form.time = (TimeZoneInfo)timeZoneCombo.SelectedItem;
+
                 this.Close();
             }
         }

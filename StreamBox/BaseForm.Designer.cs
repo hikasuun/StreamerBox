@@ -43,7 +43,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -96,7 +96,7 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
@@ -179,7 +179,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.vScrollBar2);
-            this.groupBox1.Controls.Add(this.monthCalendar1);
+            this.groupBox1.Controls.Add(this.monthCalendar);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
@@ -196,12 +196,13 @@
             this.vScrollBar2.Size = new System.Drawing.Size(17, 511);
             this.vScrollBar2.TabIndex = 1;
             // 
-            // monthCalendar1
+            // monthCalendar
             // 
-            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(3, 3);
-            this.monthCalendar1.Location = new System.Drawing.Point(45, 25);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar.CalendarDimensions = new System.Drawing.Size(3, 3);
+            this.monthCalendar.Location = new System.Drawing.Point(45, 25);
+            this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.TabIndex = 0;
+            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // vScrollBar1
             // 
@@ -290,7 +291,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.VScrollBar vScrollBar2;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.MonthCalendar monthCalendar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.StatusStrip statusStrip1;

@@ -44,25 +44,26 @@ namespace StreamBox
                     form.addStreamerList(new Streamer(lines[i - 3], lines[i - 2], new Uri(lines[i - 1]), new Uri(lines[i]) ));
                 }
             }
-            string[] streamLines = File.ReadAllLines(@"..\..\Python\data", Encoding.Unicode);
-            for (int i = 3;i < streamLines.Length;i += 4)
+
+            // creating Streams List 
+
+            string[] streamLines = File.ReadAllLines(@"..\..\Python\data.txt", Encoding.Unicode);
+            int testing = streamLines.Length;
+            for (int i = 3; i < streamLines.Length; i += 4)
             {
                 // convert from Tokyo Standard Time to UTC
-                DateTime sourceTST = DateTime.ParseExact(streamLines[i - 3] + " "+ streamLines[i - 2], "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+                DateTime sourceTST = DateTime.ParseExact(streamLines[i - 3] + " " + streamLines[i - 2], "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
                 TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
                 DateTime utcTime = TimeZoneInfo.ConvertTimeToUtc(sourceTST, tz);
 
-                // search for alias that matches scrapped name and mark it with ID
+                // search for alias that matches scrapped name and mark with ID
                 int streamerID = 0;
-                for (int j = 0; i < form.streamerList.Count; j++)
+                for (int j = 0; j < form.streamerList.Count; j++)
                 {
-                    if (form.streamerList[j].getStreamerAlias() == streamLines[i-1])
-                    {
-                        streamerID = j;
-                    }
+                    streamerID = j;
                 }
 
-                // Use URL to extract URL Title
+                // Use URL to extraxt URL Title
                 Uri streamURL = new Uri(streamLines[i]);
                 string name = GetTitle(streamURL.ToString());
 

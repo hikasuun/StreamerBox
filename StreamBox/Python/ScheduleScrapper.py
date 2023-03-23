@@ -12,7 +12,7 @@ urlList = ['https://schedule.hololive.tv/lives/hololive',
 currentDateInTokyo = datetime.now(pytz.timezone("Asia/Tokyo")).date()
 previousDateInTokyo = (currentDateInTokyo - timedelta(1))
 
-with open('data', 'w', encoding='utf-8') as file:
+with open('data.txt', 'w', encoding='utf-8') as file:
     for url in urlList:
         # make url req. and scrape
         page = requests.get(url)

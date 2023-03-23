@@ -41,8 +41,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.streamsListView = new System.Windows.Forms.ListView();
+            this.streamTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.streamerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.streamLink = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -50,6 +54,7 @@
             this.TimeZoneStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.TimeStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.UsernameStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StreamTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -57,6 +62,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -167,18 +173,59 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Streams";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.Controls.Add(this.streamsListView);
+            this.flowLayoutPanel1.Controls.Add(this.vScrollBar2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(772, 277);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // streamsListView
+            // 
+            this.streamsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.streamTime,
+            this.streamerName,
+            this.StreamTitle,
+            this.streamLink});
+            this.streamsListView.HideSelection = false;
+            this.streamsListView.Location = new System.Drawing.Point(3, 3);
+            this.streamsListView.Name = "streamsListView";
+            this.streamsListView.Size = new System.Drawing.Size(747, 270);
+            this.streamsListView.TabIndex = 0;
+            this.streamsListView.UseCompatibleStateImageBehavior = false;
+            this.streamsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // streamTime
+            // 
+            this.streamTime.Text = "Stream Time";
+            this.streamTime.Width = 120;
+            // 
+            // streamerName
+            // 
+            this.streamerName.Text = "Streamer";
+            this.streamerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.streamerName.Width = 200;
+            // 
+            // streamLink
+            // 
+            this.streamLink.Text = "Stream Link";
+            this.streamLink.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.streamLink.Width = 200;
+            // 
+            // vScrollBar2
+            // 
+            this.vScrollBar2.Location = new System.Drawing.Point(753, 0);
+            this.vScrollBar2.Name = "vScrollBar2";
+            this.vScrollBar2.Size = new System.Drawing.Size(17, 273);
+            this.vScrollBar2.TabIndex = 1;
+            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.vScrollBar2);
             this.groupBox1.Controls.Add(this.monthCalendar);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -188,20 +235,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calendar";
             // 
-            // vScrollBar2
-            // 
-            this.vScrollBar2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBar2.Location = new System.Drawing.Point(758, 16);
-            this.vScrollBar2.Name = "vScrollBar2";
-            this.vScrollBar2.Size = new System.Drawing.Size(17, 511);
-            this.vScrollBar2.TabIndex = 1;
-            // 
             // monthCalendar
             // 
             this.monthCalendar.CalendarDimensions = new System.Drawing.Size(3, 3);
             this.monthCalendar.Location = new System.Drawing.Point(45, 25);
+            this.monthCalendar.MaxSelectionCount = 1;
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
+            this.monthCalendar.TodayDate = new System.DateTime(2023, 3, 23, 0, 0, 0, 0);
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // vScrollBar1
@@ -244,6 +285,11 @@
             this.UsernameStatus.Size = new System.Drawing.Size(94, 17);
             this.UsernameStatus.Text = "Hello, Username";
             // 
+            // StreamTitle
+            // 
+            this.StreamTitle.Text = "Stream Title";
+            this.StreamTitle.Width = 200;
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +312,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
@@ -290,7 +337,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.VScrollBar vScrollBar2;
         private System.Windows.Forms.MonthCalendar monthCalendar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.BindingSource bindingSource1;
@@ -298,5 +344,11 @@
         private System.Windows.Forms.ToolStripStatusLabel TimeZoneStatus;
         private System.Windows.Forms.ToolStripStatusLabel TimeStatus;
         private System.Windows.Forms.ToolStripStatusLabel UsernameStatus;
+        private System.Windows.Forms.ColumnHeader streamTime;
+        private System.Windows.Forms.ColumnHeader streamerName;
+        private System.Windows.Forms.ColumnHeader streamLink;
+        private System.Windows.Forms.VScrollBar vScrollBar2;
+        private System.Windows.Forms.ColumnHeader StreamTitle;
+        public System.Windows.Forms.ListView streamsListView;
     }
 }

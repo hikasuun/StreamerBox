@@ -30,8 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.timeZoneCombo = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.userNameTxtBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.EnterBtn = new System.Windows.Forms.Button();
@@ -51,37 +49,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.timeZoneCombo);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.userNameTxtBox);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(16, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 112);
+            this.groupBox1.Size = new System.Drawing.Size(435, 65);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Please fill out the following information:";
-            // 
-            // timeZoneCombo
-            // 
-            this.timeZoneCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.timeZoneCombo.FormattingEnabled = true;
-            this.timeZoneCombo.Location = new System.Drawing.Point(90, 66);
-            this.timeZoneCombo.Name = "timeZoneCombo";
-            this.timeZoneCombo.Size = new System.Drawing.Size(317, 23);
-            this.timeZoneCombo.TabIndex = 4;
-            this.timeZoneCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Time Zone:";
             // 
             // userNameTxtBox
             // 
@@ -102,7 +78,7 @@
             // 
             // EnterBtn
             // 
-            this.EnterBtn.Location = new System.Drawing.Point(376, 164);
+            this.EnterBtn.Location = new System.Drawing.Point(376, 117);
             this.EnterBtn.Name = "EnterBtn";
             this.EnterBtn.Size = new System.Drawing.Size(75, 23);
             this.EnterBtn.TabIndex = 2;
@@ -115,7 +91,7 @@
             this.AcceptButton = this.EnterBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 199);
+            this.ClientSize = new System.Drawing.Size(477, 158);
             this.ControlBox = false;
             this.Controls.Add(this.EnterBtn);
             this.Controls.Add(this.groupBox1);
@@ -137,7 +113,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox userNameTxtBox;
         private System.Windows.Forms.Button EnterBtn;
-        private System.Windows.Forms.ComboBox timeZoneCombo;
-        private System.Windows.Forms.Label label3;
     }
 }

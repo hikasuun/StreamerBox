@@ -40,21 +40,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.streamsListView = new System.Windows.Forms.ListView();
-            this.streamTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.streamerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.streamLink = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
+            this.streamsTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.streamsName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.streamsLink = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TimeZoneStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.TimeStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.UsernameStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.StreamTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -62,10 +58,9 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -85,7 +80,7 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(795, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(533, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -102,21 +97,21 @@
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -138,11 +133,10 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer1);
-            this.panel1.Controls.Add(this.vScrollBar1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(795, 830);
+            this.panel1.Size = new System.Drawing.Size(533, 674);
             this.panel1.TabIndex = 2;
             // 
             // splitContainer1
@@ -159,70 +153,59 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(778, 830);
-            this.splitContainer1.SplitterDistance = 296;
+            this.splitContainer1.Size = new System.Drawing.Size(533, 674);
+            this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 1;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox2.Controls.Add(this.streamsListView);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(778, 296);
+            this.groupBox2.Size = new System.Drawing.Size(533, 240);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Streams";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.streamsListView);
-            this.flowLayoutPanel1.Controls.Add(this.vScrollBar2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(772, 277);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
             // streamsListView
             // 
             this.streamsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.streamTime,
-            this.streamerName,
-            this.StreamTitle,
-            this.streamLink});
+            this.streamsTime,
+            this.streamsName,
+            this.streamsLink});
+            this.streamsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.streamsListView.HideSelection = false;
-            this.streamsListView.Location = new System.Drawing.Point(3, 3);
+            this.streamsListView.Location = new System.Drawing.Point(3, 16);
             this.streamsListView.Name = "streamsListView";
-            this.streamsListView.Size = new System.Drawing.Size(747, 270);
+            this.streamsListView.Size = new System.Drawing.Size(527, 221);
             this.streamsListView.TabIndex = 0;
             this.streamsListView.UseCompatibleStateImageBehavior = false;
             this.streamsListView.View = System.Windows.Forms.View.Details;
+            this.streamsListView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.streamsListView_ColumnWidthChanging);
+            this.streamsListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.streamsListView_DrawColumnHeader);
+            this.streamsListView.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.streamsListView_DrawItem);
+            this.streamsListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.streamsListView_DrawSubItem);
+            this.streamsListView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.streamsListView_MouseMove);
+            this.streamsListView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.streamsListView_MouseUp);
             // 
-            // streamTime
+            // streamsTime
             // 
-            this.streamTime.Text = "Stream Time";
-            this.streamTime.Width = 120;
+            this.streamsTime.Text = "Stream Time";
+            this.streamsTime.Width = 104;
             // 
-            // streamerName
+            // streamsName
             // 
-            this.streamerName.Text = "Streamer";
-            this.streamerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.streamerName.Width = 200;
+            this.streamsName.Text = "Streamer";
+            this.streamsName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.streamsName.Width = 151;
             // 
-            // streamLink
+            // streamsLink
             // 
-            this.streamLink.Text = "Stream Link";
-            this.streamLink.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.streamLink.Width = 200;
-            // 
-            // vScrollBar2
-            // 
-            this.vScrollBar2.Location = new System.Drawing.Point(753, 0);
-            this.vScrollBar2.Name = "vScrollBar2";
-            this.vScrollBar2.Size = new System.Drawing.Size(17, 273);
-            this.vScrollBar2.TabIndex = 1;
+            this.streamsLink.Text = "Stream Link";
+            this.streamsLink.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.streamsLink.Width = 261;
             // 
             // groupBox1
             // 
@@ -230,14 +213,15 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(778, 530);
+            this.groupBox1.Size = new System.Drawing.Size(533, 430);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calendar";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // monthCalendar
             // 
-            this.monthCalendar.CalendarDimensions = new System.Drawing.Size(3, 3);
+            this.monthCalendar.CalendarDimensions = new System.Drawing.Size(2, 2);
             this.monthCalendar.Location = new System.Drawing.Point(45, 25);
             this.monthCalendar.MaxSelectionCount = 1;
             this.monthCalendar.Name = "monthCalendar";
@@ -245,24 +229,16 @@
             this.monthCalendar.TodayDate = new System.DateTime(2023, 3, 23, 0, 0, 0, 0);
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBar1.Location = new System.Drawing.Point(778, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 830);
-            this.vScrollBar1.TabIndex = 0;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TimeZoneStatus,
             this.TimeStatus,
             this.UsernameStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 832);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 676);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.statusStrip1.Size = new System.Drawing.Size(795, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(533, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -285,20 +261,16 @@
             this.UsernameStatus.Size = new System.Drawing.Size(94, 17);
             this.UsernameStatus.Text = "Hello, Username";
             // 
-            // StreamTitle
-            // 
-            this.StreamTitle.Text = "Stream Title";
-            this.StreamTitle.Width = 200;
-            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 854);
+            this.ClientSize = new System.Drawing.Size(533, 698);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "BaseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -312,11 +284,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,7 +301,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addNewStreamerToolStripMenuItem;
@@ -338,17 +308,14 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MonthCalendar monthCalendar;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel TimeZoneStatus;
         private System.Windows.Forms.ToolStripStatusLabel TimeStatus;
         private System.Windows.Forms.ToolStripStatusLabel UsernameStatus;
-        private System.Windows.Forms.ColumnHeader streamTime;
-        private System.Windows.Forms.ColumnHeader streamerName;
-        private System.Windows.Forms.ColumnHeader streamLink;
-        private System.Windows.Forms.VScrollBar vScrollBar2;
-        private System.Windows.Forms.ColumnHeader StreamTitle;
+        private System.Windows.Forms.ColumnHeader streamsTime;
+        private System.Windows.Forms.ColumnHeader streamsName;
+        private System.Windows.Forms.ColumnHeader streamsLink;
         public System.Windows.Forms.ListView streamsListView;
     }
 }

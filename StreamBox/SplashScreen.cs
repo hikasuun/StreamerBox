@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace StreamBox
 {
@@ -25,8 +27,9 @@ namespace StreamBox
         {
             InitializeComponent();
             form = frm;
-            // check for first time user
+            this.TopMost = true;
 
+            // check for first time user
             if (true)
             {
                 FirstTimeUserForm Splashform = new FirstTimeUserForm(this);
@@ -34,7 +37,7 @@ namespace StreamBox
                 
                 form.setUserName(userName);
                 form.setTimeZone(time);
-                string[] lines = File.ReadAllLines(@"..\..\InfoStreamer.txt", Encoding.Unicode);
+                string[] lines = System.IO.File.ReadAllLines(@"..\..\InfoStreamer.txt", Encoding.UTF8);
                 for (int i = 3;i < lines.Length; i += 4) // read a set ( 4 lines ) at a time for each streamer
                 {
                     // line 0 = Name
@@ -44,10 +47,13 @@ namespace StreamBox
                     form.addStreamerList(new Streamer(lines[i - 3], lines[i - 2], new Uri(lines[i - 1]), new Uri(lines[i]) ));
                 }
             }
-
+            // set timezone based on user's system
+            form.setTimeZone(TimeZoneInfo.Local);
+            // launch screen scraper
+            runExecutable();
+            
             // creating Streams List 
-
-            string[] streamLines = File.ReadAllLines(@"..\..\Python\data.txt", Encoding.Unicode);
+            string[] streamLines = System.IO.File.ReadAllLines(@"..\..\Python\data.txt", Encoding.UTF8);
             int testing = streamLines.Length;
             for (int i = 3; i < streamLines.Length; i += 4)
             {
@@ -60,15 +66,20 @@ namespace StreamBox
                 int streamerID = 0;
                 for (int j = 0; j < form.streamerList.Count; j++)
                 {
-                    streamerID = j;
+                    if (form.streamerList[j].getStreamerAlias() == streamLines[i - 1])
+                    {
+                        streamerID = j;
+                    }
+
                 }
 
                 // Use URL to extraxt URL Title
                 Uri streamURL = new Uri(streamLines[i]);
-                string name = GetTitle(streamURL.ToString());
+                string name = streamLines[i];
 
                 // create event and add to BaseForm's streamEvents list
-                form.addEventList(new StreamEvents(form.streamerList[streamerID], utcTime, streamURL, name));
+
+                form.addEventList(new StreamEvents(form.streamerList[streamerID], utcTime, streamURL));
             }
                 loadDone = true;
         }
@@ -87,6 +98,28 @@ namespace StreamBox
             }
         }
 
+        private void runExecutable()
+        {
+            var executable = new ProcessStartInfo();
+            executable.UseShellExecute = false;
+            executable.WindowStyle = ProcessWindowStyle.Hidden;
+            executable.CreateNoWindow = true;
+            executable.WorkingDirectory = Path.GetDirectoryName(@"..\..\Python\ScheduleScrapper.exe");
+            executable.FileName = @"..\..\Python\ScheduleScrapper.exe";
+
+            try
+            {
+                using (Process proc = Process.Start(executable))
+                {
+                    proc.WaitForExit();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -95,21 +128,6 @@ namespace StreamBox
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        public static string GetTitle(string url)
-        {
-            var api = $"http://youtube.com/get_video_info?video_id={GetArgs(url, "v", '?')}";
-            return GetArgs(new WebClient().DownloadString(api), "title", '&');
-        }
-
-        private static string GetArgs(string args, string key, char query)
-        {
-            var iqs = args.IndexOf(query);
-            return iqs == -1
-                ? string.Empty
-                : HttpUtility.ParseQueryString(iqs < args.Length - 1
-                    ? args.Substring(iqs + 1) : string.Empty)[key];
         }
     }
 }

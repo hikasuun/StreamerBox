@@ -19,10 +19,8 @@ namespace StreamBox
         public FirstTimeUserForm(SplashScreen frm)
         {
             InitializeComponent();
-            form = frm; 
-
-            tzCollection = TimeZoneInfo.GetSystemTimeZones();
-            timeZoneCombo.DataSource= tzCollection;
+            form = frm;
+            this.TopMost = true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -43,15 +41,13 @@ namespace StreamBox
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (String.IsNullOrEmpty(userNameTxtBox.Text) ||
-                timeZoneCombo.SelectedItem == null)
+            if (String.IsNullOrEmpty(userNameTxtBox.Text))
             {
                 MessageBox.Show("Please do not leave field blanks.");
             }
             else
             {
                 form.userName = userNameTxtBox.Text;
-                form.time = (TimeZoneInfo)timeZoneCombo.SelectedItem;
 
                 this.Close();
             }

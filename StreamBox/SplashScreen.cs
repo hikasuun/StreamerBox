@@ -38,13 +38,15 @@ namespace StreamBox
                 form.setUserName(userName);
                 form.setTimeZone(time);
                 string[] lines = System.IO.File.ReadAllLines(@"..\..\InfoStreamer.txt", Encoding.UTF8);
-                for (int i = 3;i < lines.Length; i += 4) // read a set ( 4 lines ) at a time for each streamer
+                for (int i = 4;i < lines.Length; i += 5) // read a set ( 5 lines ) at a time for each streamer
                 {
                     // line 0 = Name
                     // line 1 = Alias
                     // line 2 = Twitter URL
                     // line 3 = YouTube URL
-                    form.addStreamerList(new Streamer(lines[i - 3], lines[i - 2], new Uri(lines[i - 1]), new Uri(lines[i]) ));
+                    // line 4 = Hololive Branch
+                    // added at end is true default for visibility
+                    form.addStreamerList(new Streamer(lines[i - 4], lines[i - 3], new Uri(lines[i - 2]), new Uri(lines[i-1]), lines[i], true ));
                 }
             }
             // set timezone based on user's system

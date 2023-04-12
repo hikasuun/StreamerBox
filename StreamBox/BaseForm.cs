@@ -74,7 +74,7 @@ namespace StreamBox
 
         private void addNewStreamerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StreamerSettingsForm frm = new StreamerSettingsForm();
+            StreamerSettingsForm frm = new StreamerSettingsForm(this);
             frm.Show();
             frm.TopMost= true;
             // show streamer settings
@@ -94,6 +94,7 @@ namespace StreamBox
         {
             return this.userTimeZone;
         }
+
         public void setUserName(string name)
         {
             this.userName = name;
@@ -150,7 +151,8 @@ namespace StreamBox
 
             for (int i = 0; i < streamsList.Count; i++)
             {
-                if (selectedDate == streamsList[i].getStreamDate().ToShortDateString())
+                if (selectedDate == streamsList[i].getStreamDate().ToShortDateString() &&
+                    streamsList[i].getStreamer().getVisible() == true)
                 {
                     var lvi = new ListViewItem(new string[] {streamsList[i].getStreamDate().ToLocalTime().ToString("MM/dd/yyyy HH:mm"),
                         streamsList[i].getStreamer().getStreamerName(), streamsList[i].getStreamURL().ToString() });

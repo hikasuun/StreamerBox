@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using static ScrapySharp.Core.Token;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -22,6 +23,7 @@ namespace StreamBox
         private TimeZoneInfo userTimeZone; // holds user's time zone
         public List<Streamer> streamerList = new List<Streamer>(); // holds default list of streamers from Hololive
         public List<StreamEvents> streamsList = new List<StreamEvents>(); // holds list of streams from Hololive
+        private SaveStateHelper sth = null;
 
         // helpers for clicking links
         Point curMouse = Point.Empty;
@@ -246,6 +248,17 @@ namespace StreamBox
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            sth = new SaveStateHelper(this);
+            sth.writeUserState(@"..\..\saveState.xml"); // save user settings
+            // clean up data.txt made from Python script
+            if (File.Exists(@"..\..\Python\data.txt")) 
+            {
+                File.Delete(@"..\..\Python\data.txt");
+            }
         }
     }
 }

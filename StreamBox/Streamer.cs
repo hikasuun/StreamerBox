@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace StreamBox
 {
+    [Serializable]
      public class Streamer
     {
         private string streamerName; // holds streamer name

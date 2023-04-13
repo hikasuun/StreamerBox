@@ -126,7 +126,7 @@
             // addNewStreamerToolStripMenuItem
             // 
             this.addNewStreamerToolStripMenuItem.Name = "addNewStreamerToolStripMenuItem";
-            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.addNewStreamerToolStripMenuItem.Text = "Streamer Display";
             this.addNewStreamerToolStripMenuItem.Click += new System.EventHandler(this.addNewStreamerToolStripMenuItem_Click);
             // 
@@ -275,6 +275,7 @@
             this.Name = "BaseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StreamerBox";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BaseForm_FormClosing);
             this.Load += new System.EventHandler(this.BaseForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

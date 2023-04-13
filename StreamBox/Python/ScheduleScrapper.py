@@ -31,14 +31,16 @@ with open('data.txt', 'r+', encoding='utf-8') as file:
             # checking for boundary issue
             # also prevents duplicate if links on the schedule are not to a stream
             if (card.find('a', href=re.compile('https://www\.youtube\.com/')) is not None):
-                if (timeCheck[len(timeCheck) - 1] >= timeCheck[len(timeCheck) - 2]):
-                    file.write((previousDateInTokyo + timedelta (incrementedTime)).strftime("%d/%m/%Y\n"))
-                # if time rolls over i.e. next time is smaller than previous time, then increment
-                else:
-                    incrementedTime = incrementedTime + 1
-                    file.write( (previousDateInTokyo + timedelta (incrementedTime)).strftime("%d/%m/%Y\n") )
-                # write to data file
-                file.write(card.find('div', class_='col-4 col-sm-4 col-md-4 text-left datetime').text.replace(' ','').replace('\n', ''))
-                file.write(card.find('div', class_='col text-right name').text.replace(' ','') )
-                file.write(card.find('a', href=re.compile('https://www\.youtube\.com/'))['href'] )
-                file.write('\n')
+                with open('..\InfoStreamer.txt', 'r+', encoding='utf-8') as f:
+                    if ((card.find('div', class_='col text-right name').text.replace(' ','') ) in f.read()):
+                        if (timeCheck[len(timeCheck) - 1] >= timeCheck[len(timeCheck) - 2]):
+                            file.write((previousDateInTokyo + timedelta (incrementedTime)).strftime("%d/%m/%Y\n"))
+                            # if time rolls over i.e. next time is smaller than previous time, then increment
+                        else:
+                            incrementedTime = incrementedTime + 1
+                            file.write( (previousDateInTokyo + timedelta (incrementedTime)).strftime("%d/%m/%Y\n") )
+                        # write to data file
+                        file.write(card.find('div', class_='col-4 col-sm-4 col-md-4 text-left datetime').text.replace(' ','').replace('\n', ''))
+                        file.write(card.find('div', class_='col text-right name').text.replace(' ','') )
+                        file.write(card.find('a', href=re.compile('https://www\.youtube\.com/'))['href'] )
+                        file.write('\n')

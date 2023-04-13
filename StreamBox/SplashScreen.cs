@@ -23,6 +23,7 @@ namespace StreamBox
         public TimeZoneInfo time;
         private Boolean tickDone = false;
         private Boolean loadDone = false;
+        private SaveStateHelper sth = null;
         public SplashScreen(BaseForm frm)
         {
             InitializeComponent();
@@ -30,15 +31,26 @@ namespace StreamBox
             this.TopMost = true;
 
             // check for first time user
-            if (true)
+            if (System.IO.File.Exists(@"..\..\saveState.xml"))
+            {
+                sth = new SaveStateHelper();
+                sth.readUserState(@"..\..\saveState.xml");
+                form.setUserName(sth.currentSaveState.UserName);
+                foreach(Streamer streamers in sth.deserializedStreamerList)
+                {
+                    form.addStreamerList(streamers);
+                }
+
+            }
+            else
             {
                 FirstTimeUserForm Splashform = new FirstTimeUserForm(this);
                 Splashform.ShowDialog();
-                
+
                 form.setUserName(userName);
                 form.setTimeZone(time);
                 string[] lines = System.IO.File.ReadAllLines(@"..\..\InfoStreamer.txt", Encoding.UTF8);
-                for (int i = 4;i < lines.Length; i += 5) // read a set ( 5 lines ) at a time for each streamer
+                for (int i = 4; i < lines.Length; i += 5) // read a set ( 5 lines ) at a time for each streamer
                 {
                     // line 0 = Name
                     // line 1 = Alias
@@ -46,9 +58,10 @@ namespace StreamBox
                     // line 3 = YouTube URL
                     // line 4 = Hololive Branch
                     // added at end is true default for visibility
-                    form.addStreamerList(new Streamer(lines[i - 4], lines[i - 3], new Uri(lines[i - 2]), new Uri(lines[i-1]), lines[i], true ));
+                    form.addStreamerList(new Streamer(lines[i - 4], lines[i - 3], new Uri(lines[i - 2]), new Uri(lines[i - 1]), lines[i], true));
                 }
             }
+
             // set timezone based on user's system
             form.setTimeZone(TimeZoneInfo.Local);
             // launch screen scraper

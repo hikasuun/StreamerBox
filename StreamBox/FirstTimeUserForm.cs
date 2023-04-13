@@ -13,7 +13,6 @@ namespace StreamBox
 {
     public partial class FirstTimeUserForm : Form
     {
-        private ReadOnlyCollection<TimeZoneInfo> tzCollection;
         private SplashScreen form;
 
         public FirstTimeUserForm(SplashScreen frm)

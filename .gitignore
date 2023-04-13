@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 StreamBox/Python/data
 StreamBox/Python/streamer_data
+/StreamBox/Python/data.txt
+/StreamBox/saveState.xml

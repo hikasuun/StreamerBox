@@ -76,6 +76,7 @@ namespace StreamBox
                 DateTime sourceTST = DateTime.ParseExact(streamLines[i - 3] + " " + streamLines[i - 2], "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
                 TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
                 DateTime utcTime = TimeZoneInfo.ConvertTimeToUtc(sourceTST, tz);
+                DateTime localTime = utcTime.ToLocalTime();
 
                 // search for alias that matches scrapped name and mark with ID
                 int streamerID = 0;
@@ -93,10 +94,10 @@ namespace StreamBox
                 string name = streamLines[i];
 
                 // create event and add to BaseForm's streamEvents list
-
-                form.addEventList(new StreamEvents(form.streamerList[streamerID], utcTime, streamURL));
+                form.addEventList(new StreamEvents(form.streamerList[streamerID], localTime, streamURL));
             }
-                loadDone = true;
+            form.streamsList = form.streamsList.OrderBy(o => o.getStreamDate()).ToList();
+            loadDone = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

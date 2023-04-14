@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,8 +8,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -21,9 +24,11 @@ namespace StreamBox
     {
         private string userName; // holds user's name
         private TimeZoneInfo userTimeZone; // holds user's time zone
-        public List<Streamer> streamerList = new List<Streamer>(); // holds default list of streamers from Hololive
-        public List<StreamEvents> streamsList = new List<StreamEvents>(); // holds list of streams from Hololive
-        private SaveStateHelper sth = null;
+        public  List<Streamer> streamerList = new List<Streamer>(); // holds default list of streamers from Hololive
+        public  List<StreamEvents> streamsList = new List<StreamEvents>(); // holds list of streams from Hololive
+        private SaveStateHelper sth = null; // helps to save/load relevant data during closing/opening of app
+        private System.Timers.Timer fifteenMinTimer; // helps to keep track of what is closest stream
+        private StreamEvents closestEvent; // ALERT: ONLY USED FOR DEBUGGING AND TESTING FUNCTIONALITY, REMOVE WHEN FINISHED
 
         // helpers for clicking links
         Point curMouse = Point.Empty;
@@ -34,37 +39,48 @@ namespace StreamBox
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            
-        }
-
         private void BaseForm_Load(object sender, EventArgs e)
         {
             this.Hide();
-            
+
             SplashScreen splashScreen = new SplashScreen(this);
             splashScreen.ShowDialog();
 
-            monthCalendar.MinDate = DateTime.Now;
-            monthCalendar.MaxDate = DateTime.Now.AddDays(2);
+            monthCalendar.MinDate = streamsList[0].getStreamDate();
+            monthCalendar.MaxDate = streamsList[streamsList.Count-1].getStreamDate();
             monthCalendar.MaxSelectionCount = 1;
 
             TimeStatus.Text = DateTime.Now.ToString("hh:mm tt") + "   ";
             TimeZoneStatus.Text = userTimeZone.DisplayName.ToString() + "   ";
             UsernameStatus.Text = "Hello, " + userName + "  ";
 
-            streamsList = streamsList.OrderBy(x => x.getStreamDate().Date).ThenBy(x => x.getStreamDate().ToLocalTime()).ToList();
-           
+            fifteenMinTimer = new System.Timers.Timer(1000 * 60 * 15); // every 15 min check
+            fifteenMinTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            fifteenMinTimer.Start();
+        }
 
-            this.Show();
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            // check current time
+            var currentTime = DateTime.Now;
+            for (int i = 0; i < streamsList.Count; i++)
+            {
+                // find which stream falls within the 0 <= x <= 30 min zone
+                TimeSpan duration = streamsList[i].getStreamDate().Subtract(currentTime);
+                if ((duration.TotalMinutes <= 30 && duration.TotalMinutes >= 0) && streamsList[i].getStreamer().getVisible())
+                {
+                    // send toast notification
+                    LaunchToastNotification(streamsList[i].getStreamer().getStreamerName(),
+                        streamsList[i].getStreamURL());
+                }
+            }
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserSettingsForm frm = new UserSettingsForm();
             frm.Show();
-            frm.TopMost= true;
+            frm.TopMost = true;
             // show user settings
         }
 
@@ -78,45 +94,12 @@ namespace StreamBox
         {
             StreamerSettingsForm frm = new StreamerSettingsForm(this);
             frm.Show();
-            frm.TopMost= true;
+            frm.TopMost = true;
             // show streamer settings
-        }
-
-        private void currentTimeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // getters and setters
-        public string getUserName()
-        {
-            return this.userName;
-        }
-        public TimeZoneInfo getTimeZone()
-        {
-            return this.userTimeZone;
-        }
-
-        public void setUserName(string name)
-        {
-            this.userName = name;
-        }
-        public void setTimeZone(TimeZoneInfo timeZone)
-        {
-            this.userTimeZone = timeZone;
-        }
-        public void addStreamerList(Streamer sObj)
-        {
-            this.streamerList.Add(sObj);
-        }
-        public void addEventList(StreamEvents sObj)
-        {
-            this.streamsList.Add(sObj);
-        }
-
-        private void TimeZoneStatus_Click(object sender, EventArgs e)
-        {
-
+            monthCalendar.MinDate = streamsList[0].getStreamDate();
+            monthCalendar.MaxDate = streamsList[streamsList.Count - 1].getStreamDate();
+            monthCalendar.MaxSelectionCount = 1;
+            this.Refresh();
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
@@ -149,30 +132,21 @@ namespace StreamBox
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             streamsListView.Items.Clear();
-            string selectedDate = monthCalendar.SelectionRange.Start.ToShortDateString();
+            DateTime selectedDateStart = monthCalendar.SelectionStart.Date;
+            DateTime selectedDateEnd = selectedDateStart.AddHours(23).AddMinutes(59).AddSeconds(59);
 
-            for (int i = 0; i < streamsList.Count; i++)
+            for (int i = 0; i < streamsList.Count-1; i++)
             {
-                if (selectedDate == streamsList[i].getStreamDate().ToShortDateString() &&
+                if ((streamsList[i].getStreamDate() >= selectedDateStart && streamsList[i].getStreamDate() <= selectedDateEnd) &&
                     streamsList[i].getStreamer().getVisible() == true)
                 {
-                    var lvi = new ListViewItem(new string[] {streamsList[i].getStreamDate().ToLocalTime().ToString("MM/dd/yyyy HH:mm"),
+                    var lvi = new ListViewItem(new string[] {streamsList[i].getStreamDate().ToString("MM/dd/yyyy HH:mm"),
                         streamsList[i].getStreamer().getStreamerName(), streamsList[i].getStreamURL().ToString() });
                     lvi.UseItemStyleForSubItems = false; // allows for hypertext formatting
 
                     streamsListView.Items.Add(lvi);
                 }
             }
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void streamsListView_MouseMove(object sender, MouseEventArgs e)
@@ -200,7 +174,7 @@ namespace StreamBox
                 this.BeginInvoke(new Action(() => {
                     System.Diagnostics.Process.Start(url.ToString());
                 }));
-                
+
             }
         }
 
@@ -234,20 +208,10 @@ namespace StreamBox
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void streamsListView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;
             e.NewWidth = streamsListView.Columns[e.ColumnIndex].Width;
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -255,10 +219,84 @@ namespace StreamBox
             sth = new SaveStateHelper(this);
             sth.writeUserState(@"..\..\saveState.xml"); // save user settings
             // clean up data.txt made from Python script
-            if (File.Exists(@"..\..\Python\data.txt")) 
+            if (File.Exists(@"..\..\Python\data.txt"))
             {
                 File.Delete(@"..\..\Python\data.txt");
             }
+            // clean up toast notifications
+            ToastNotificationManagerCompat.History.Clear();
+
+        }
+
+        private void LaunchToastNotification(string name, Uri url)
+        {
+            ToastNotificationManagerCompat.OnActivated += toastArgs =>
+            {
+                //obtain args from notification
+                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
+                this.BeginInvoke(new Action(() =>
+                {
+                    System.Diagnostics.Process.Start(url.ToString());
+                }));
+            };
+
+            new ToastContentBuilder()
+                .AddArgument("conversationId", 9813)
+                .AddText("Upcoming Stream")
+                .AddText($"There is a stream coming up for {name}")
+                .AddButton(new ToastButton()
+                    .SetContent("Stream Link")
+                    .AddArgument("action", "openLink")
+                .SetBackgroundActivation())
+                .Show(toast =>
+                {
+                    toast.ExpirationTime = DateTime.Now.AddHours(1); // expires after 1 hours from notification
+                });
+        }
+
+        private void sendToastNotificationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var currentTime = DateTime.Now;
+            int found = 0;
+            for (int i = 0; i < streamsList.Count; i++)
+            {
+                // find which stream falls within the 0 <= x <= 30 min zone
+                TimeSpan duration = streamsList[i].getStreamDate().Subtract(currentTime);
+                if ((duration.TotalMinutes >= 0) && (streamsList[i].getStreamer().getVisible() == true) && found == 0)
+                {
+                    closestEvent = streamsList[i];
+                    found = 1;
+                }
+            }
+            this.Show();
+            LaunchToastNotification(closestEvent.getStreamer().getStreamerName(), closestEvent.getStreamURL());
+        }
+
+        // getters and setters
+        public string getUserName()
+        {
+            return this.userName;
+        }
+        public TimeZoneInfo getTimeZone()
+        {
+            return this.userTimeZone;
+        }
+
+        public void setUserName(string name)
+        {
+            this.userName = name;
+        }
+        public void setTimeZone(TimeZoneInfo timeZone)
+        {
+            this.userTimeZone = timeZone;
+        }
+        public void addStreamerList(Streamer sObj)
+        {
+            this.streamerList.Add(sObj);
+        }
+        public void addEventList(StreamEvents sObj)
+        {
+            this.streamsList.Add(sObj);
         }
     }
 }

@@ -51,6 +51,7 @@
             this.TimeStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.UsernameStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.sendToastNotificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -118,7 +119,8 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addNewStreamerToolStripMenuItem});
+            this.addNewStreamerToolStripMenuItem,
+            this.sendToastNotificationToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -126,7 +128,7 @@
             // addNewStreamerToolStripMenuItem
             // 
             this.addNewStreamerToolStripMenuItem.Name = "addNewStreamerToolStripMenuItem";
-            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.addNewStreamerToolStripMenuItem.Text = "Streamer Display";
             this.addNewStreamerToolStripMenuItem.Click += new System.EventHandler(this.addNewStreamerToolStripMenuItem_Click);
             // 
@@ -167,7 +169,6 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Streams";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // streamsListView
             // 
@@ -217,7 +218,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calendar";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // monthCalendar
             // 
@@ -226,7 +226,7 @@
             this.monthCalendar.MaxSelectionCount = 1;
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
-            this.monthCalendar.TodayDate = new System.DateTime(2023, 3, 23, 0, 0, 0, 0);
+            this.monthCalendar.TodayDate = new System.DateTime(2023, 4, 13, 0, 0, 0, 0);
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // statusStrip1
@@ -247,7 +247,6 @@
             this.TimeZoneStatus.Name = "TimeZoneStatus";
             this.TimeZoneStatus.Size = new System.Drawing.Size(101, 17);
             this.TimeZoneStatus.Text = "Current Timezone";
-            this.TimeZoneStatus.Click += new System.EventHandler(this.TimeZoneStatus_Click);
             // 
             // TimeStatus
             // 
@@ -260,6 +259,13 @@
             this.UsernameStatus.Name = "UsernameStatus";
             this.UsernameStatus.Size = new System.Drawing.Size(94, 17);
             this.UsernameStatus.Text = "Hello, Username";
+            // 
+            // sendToastNotificationToolStripMenuItem
+            // 
+            this.sendToastNotificationToolStripMenuItem.Name = "sendToastNotificationToolStripMenuItem";
+            this.sendToastNotificationToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.sendToastNotificationToolStripMenuItem.Text = "Send Toast Notification";
+            this.sendToastNotificationToolStripMenuItem.Click += new System.EventHandler(this.sendToastNotificationToolStripMenuItem_Click);
             // 
             // BaseForm
             // 
@@ -318,5 +324,6 @@
         private System.Windows.Forms.ColumnHeader streamsName;
         private System.Windows.Forms.ColumnHeader streamsLink;
         public System.Windows.Forms.ListView streamsListView;
+        private System.Windows.Forms.ToolStripMenuItem sendToastNotificationToolStripMenuItem;
     }
 }

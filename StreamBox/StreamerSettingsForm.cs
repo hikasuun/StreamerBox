@@ -50,13 +50,24 @@ namespace StreamBox
                     form.streamerList[i].setVisible(true);
                 }
             }
+            // go through current streams and modify visibility
+            for (int i = 0; i <= form.streamsList.Count-1; i++)
+            {
+                for (int j = 0; j <= form.streamerList.Count-1; j++)
+                {
+                    if (String.Equals(form.streamsList[i].getStreamer().getStreamerName(), form.streamerList[j].getStreamerName()))
+                    {
+                        form.streamsList[i].getStreamer().setVisible(form.streamerList[j].getVisible());
+                    }
+                }
+            }
+
             MessageBox.Show("Changes saved.");
             this.Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Changes discarded.");
             this.Close();
         }
 

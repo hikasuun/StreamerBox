@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamBox", "StreamBox\StreamBox.csproj", "{16F048B8-7616-40AD-8222-AE7169515CFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamerBox", "StreamBox\StreamerBox.csproj", "{16F048B8-7616-40AD-8222-AE7169515CFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

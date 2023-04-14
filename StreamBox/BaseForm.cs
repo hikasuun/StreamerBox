@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
+using StreamerBox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,9 @@ namespace StreamBox
 {
     public partial class BaseForm : Form
     {
+        // TODO: Minimize to Taskbar
+        //       Streamer Profiles
+
         private string userName; // holds user's name
         private TimeZoneInfo userTimeZone; // holds user's time zone
         public  List<Streamer> streamerList = new List<Streamer>(); // holds default list of streamers from Hololive
@@ -78,7 +82,7 @@ namespace StreamBox
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserSettingsForm frm = new UserSettingsForm();
+            UserSettingsForm frm = new UserSettingsForm(this);
             frm.Show();
             frm.TopMost = true;
             // show user settings
@@ -241,6 +245,7 @@ namespace StreamBox
             };
 
             new ToastContentBuilder()
+
                 .AddArgument("conversationId", 9813)
                 .AddText("Upcoming Stream")
                 .AddText($"There is a stream coming up for {name}")
@@ -297,6 +302,12 @@ namespace StreamBox
         public void addEventList(StreamEvents sObj)
         {
             this.streamsList.Add(sObj);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm frm = new AboutForm();
+            frm.ShowDialog();
         }
     }
 }

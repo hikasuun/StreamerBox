@@ -46,12 +46,12 @@
             this.StreamerCheckBoxes.FormattingEnabled = true;
             this.StreamerCheckBoxes.Location = new System.Drawing.Point(6, 15);
             this.StreamerCheckBoxes.Name = "StreamerCheckBoxes";
-            this.StreamerCheckBoxes.Size = new System.Drawing.Size(393, 619);
+            this.StreamerCheckBoxes.Size = new System.Drawing.Size(393, 424);
             this.StreamerCheckBoxes.TabIndex = 0;
             // 
             // SaveBtn
             // 
-            this.SaveBtn.Location = new System.Drawing.Point(434, 625);
+            this.SaveBtn.Location = new System.Drawing.Point(433, 415);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(112, 36);
             this.SaveBtn.TabIndex = 2;
@@ -61,9 +61,10 @@
             // 
             // CancelBtn
             // 
-            this.CancelBtn.Location = new System.Drawing.Point(434, 583);
+            this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelBtn.Location = new System.Drawing.Point(433, 373);
             this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(111, 36);
+            this.CancelBtn.Size = new System.Drawing.Size(112, 36);
             this.CancelBtn.TabIndex = 3;
             this.CancelBtn.Text = "Cancel Changes";
             this.CancelBtn.UseVisualStyleBackColor = true;
@@ -104,7 +105,7 @@
             this.groupBox1.Controls.Add(this.StreamerCheckBoxes);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 649);
+            this.groupBox1.Size = new System.Drawing.Size(410, 459);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Toggles Visibility for Talents in Schedule";
@@ -134,9 +135,11 @@
             // 
             // StreamerSettingsForm
             // 
+            this.AcceptButton = this.SaveBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 673);
+            this.CancelButton = this.CancelBtn;
+            this.ClientSize = new System.Drawing.Size(558, 490);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CancelBtn);
@@ -146,7 +149,7 @@
             this.MinimizeBox = false;
             this.Name = "StreamerSettingsForm";
             this.ShowIcon = false;
-            this.Text = "Streamer Settings";
+            this.Text = "Streamer Display Toggle Settings";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);

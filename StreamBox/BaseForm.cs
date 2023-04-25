@@ -23,8 +23,7 @@ namespace StreamBox
 {
     public partial class BaseForm : Form
     {
-        // TODO: Minimize to Taskbar
-        //       Streamer Profiles
+        // TODO: Streamer Profiles    
 
         private string userName; // holds user's name
         private TimeZoneInfo userTimeZone; // holds user's time zone
@@ -259,7 +258,7 @@ namespace StreamBox
                 });
         }
 
-        private void sendToastNotificationToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sendToastNotificationToolStripMenuItem_Click(object sender, EventArgs e) // checking time for streams
         {
             var currentTime = DateTime.Now;
             int found = 0;
@@ -309,5 +308,22 @@ namespace StreamBox
             AboutForm frm = new AboutForm();
             frm.ShowDialog();
         }
+
+        private void sendToTray(object sender, EventArgs e) // send to tray
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                StreamerBoxTray.Visible = true;
+            }
+        }
+
+        private void StreamerBoxTray_MouseDoubleClick(object sender, MouseEventArgs e) // recover from tray
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            StreamerBoxTray.Visible = false;
+        }
+        
     }
 }

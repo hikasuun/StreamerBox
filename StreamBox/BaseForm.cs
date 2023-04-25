@@ -31,7 +31,7 @@ namespace StreamBox
         public  List<StreamEvents> streamsList = new List<StreamEvents>(); // holds list of streams from Hololive
         private SaveStateHelper sth = null; // helps to save/load relevant data during closing/opening of app
         private System.Timers.Timer fifteenMinTimer; // helps to keep track of what is closest stream
-        private StreamEvents closestEvent; // ALERT: ONLY USED FOR DEBUGGING AND TESTING FUNCTIONALITY, REMOVE WHEN FINISHED
+        private StreamEvents closestEvent; // used to push a notification on button press
 
         // helpers for clicking links
         Point curMouse = Point.Empty;
@@ -159,7 +159,8 @@ namespace StreamBox
             if (mSelected != null) mSelected.Font = streamsListView.Font;
             mSelected = null;
             streamsListView.Cursor = Cursors.Default;
-            if (info.SubItem != null && info.Item.SubItems[2] == info.SubItem)
+            // if cursor is hovering over link OR VTuber name, change to hand cursor
+            if ((info.SubItem != null && info.Item.SubItems[2] == info.SubItem) || (info.SubItem != null && info.Item.SubItems[1] == info.SubItem))
             {
                 info.SubItem.Font = new Font(info.SubItem.Font, FontStyle.Underline);
                 streamsListView.Cursor = Cursors.Hand;
@@ -174,10 +175,24 @@ namespace StreamBox
             {
                 var url = new Uri(hit.SubItem.Text);
                 // prevents re-entry bug causing 2 streams being opened
-                this.BeginInvoke(new Action(() => {
+                this.BeginInvoke(new Action(() =>
+                {
                     System.Diagnostics.Process.Start(url.ToString());
                 }));
 
+            }
+            if (hit.SubItem != null && hit.SubItem == hit.Item.SubItems[1])
+            {
+                Streamer streamerSelected = null;
+                foreach(Streamer talent in streamerList)
+                {
+                    if (hit.SubItem.Text == talent.getStreamerName())
+                    {
+                        streamerSelected = talent;
+                    }
+                }
+                StreamerInfo sif = new StreamerInfo(this, streamerSelected);
+                sif.ShowDialog();
             }
         }
 

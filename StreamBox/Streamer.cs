@@ -16,12 +16,12 @@ namespace StreamBox
         private string streamerBranch; // holds streamer branch
         private Boolean visible; // toggle for whether user wants to see VTuber
 
-        public Streamer(string name, string alias, Uri twitter, Uri youtube, string branch, bool visible)
+        public Streamer(string name, string alias, Uri youtube, Uri twitter, string branch, bool visible)
         {
             this.streamerName = name;
             this.streamerAlias = alias;
+            this.youtubeURL= youtube;
             this.twitterURL = twitter;
-            this.youtubeURL = youtube;
             this.streamerBranch = branch;
             this.visible = visible;
         }

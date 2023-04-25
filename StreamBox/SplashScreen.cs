@@ -54,8 +54,8 @@ namespace StreamBox
                 {
                     // line 0 = Name
                     // line 1 = Alias
-                    // line 2 = Twitter URL
-                    // line 3 = YouTube URL
+                    // line 2 = YouTube URL
+                    // line 3 = Twitter URL
                     // line 4 = Hololive Branch
                     // added at end is true default for visibility
                     form.addStreamerList(new Streamer(lines[i - 4], lines[i - 3], new Uri(lines[i - 2]), new Uri(lines[i - 1]), lines[i], true));

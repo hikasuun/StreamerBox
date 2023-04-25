@@ -43,6 +43,7 @@
             // 
             // StreamerCheckBoxes
             // 
+            this.StreamerCheckBoxes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StreamerCheckBoxes.FormattingEnabled = true;
             this.StreamerCheckBoxes.Location = new System.Drawing.Point(6, 15);
             this.StreamerCheckBoxes.Name = "StreamerCheckBoxes";
@@ -149,6 +150,7 @@
             this.MinimizeBox = false;
             this.Name = "StreamerSettingsForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Streamer Display Toggle Settings";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

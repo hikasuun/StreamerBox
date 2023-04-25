@@ -22,7 +22,7 @@ namespace StreamBox
 
             for (int i = 0; i <= form.streamerList.Count()-1; i++)
             {
-                StreamerCheckBoxes.Items.Add(form.streamerList[i].getStreamerName());
+                StreamerCheckBoxes.Items.Add(form.streamerList[i].getStreamerName(), form.streamerList[i].getVisible());
             }
             for (int i = 0; i <= form.streamerList.Count()-1; i++)
             {

@@ -99,6 +99,7 @@
             this.MinimizeBox = false;
             this.Name = "UserSettingsForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Change Username";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

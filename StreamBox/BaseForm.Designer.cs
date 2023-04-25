@@ -175,7 +175,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(533, 674);
-            this.splitContainer1.SplitterDistance = 240;
+            this.splitContainer1.SplitterDistance = 307;
             this.splitContainer1.TabIndex = 1;
             // 
             // groupBox2
@@ -184,7 +184,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(533, 240);
+            this.groupBox2.Size = new System.Drawing.Size(533, 307);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Streams";
@@ -199,7 +199,7 @@
             this.streamsListView.HideSelection = false;
             this.streamsListView.Location = new System.Drawing.Point(3, 16);
             this.streamsListView.Name = "streamsListView";
-            this.streamsListView.Size = new System.Drawing.Size(527, 221);
+            this.streamsListView.Size = new System.Drawing.Size(527, 288);
             this.streamsListView.TabIndex = 0;
             this.streamsListView.UseCompatibleStateImageBehavior = false;
             this.streamsListView.View = System.Windows.Forms.View.Details;
@@ -233,7 +233,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(533, 430);
+            this.groupBox1.Size = new System.Drawing.Size(533, 363);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calendar";
@@ -244,8 +244,9 @@
             this.monthCalendar.Location = new System.Drawing.Point(45, 25);
             this.monthCalendar.MaxSelectionCount = 1;
             this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.ShowTodayCircle = false;
             this.monthCalendar.TabIndex = 0;
-            this.monthCalendar.TodayDate = new System.DateTime(2023, 4, 13, 0, 0, 0, 0);
+            this.monthCalendar.TodayDate = new System.DateTime(((long)(0)));
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // statusStrip1

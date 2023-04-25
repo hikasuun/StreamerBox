@@ -23,8 +23,6 @@ namespace StreamBox
 {
     public partial class BaseForm : Form
     {
-        // TODO: Streamer Profiles    
-
         private string userName; // holds user's name
         private TimeZoneInfo userTimeZone; // holds user's time zone
         public  List<Streamer> streamerList = new List<Streamer>(); // holds default list of streamers from Hololive

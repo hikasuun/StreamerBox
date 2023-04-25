@@ -246,7 +246,7 @@
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.ShowTodayCircle = false;
             this.monthCalendar.TabIndex = 0;
-            this.monthCalendar.TodayDate = new System.DateTime(((long)(0)));
+            this.monthCalendar.TodayDate = new System.DateTime(2023, 4, 25, 0, 0, 0, 0);
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // statusStrip1

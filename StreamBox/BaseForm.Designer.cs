@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +54,7 @@
             this.UsernameStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.StreamerBoxTray = new System.Windows.Forms.NotifyIcon(this.components);
+            this.refreshStreamsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -80,8 +80,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.MenuBar;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(533, 24);
@@ -92,50 +92,43 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.fileToolStripMenuItem.Text = "Settings";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Change Username";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Text = "About Developer";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit Program";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshStreamsToolStripMenuItem1,
             this.addNewStreamerToolStripMenuItem,
             this.sendToastNotificationToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.editToolStripMenuItem.Text = "Streams";
             // 
             // addNewStreamerToolStripMenuItem
             // 
@@ -148,7 +141,7 @@
             // 
             this.sendToastNotificationToolStripMenuItem.Name = "sendToastNotificationToolStripMenuItem";
             this.sendToastNotificationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.sendToastNotificationToolStripMenuItem.Text = "Send Toast Notification";
+            this.sendToastNotificationToolStripMenuItem.Text = "Check Nearest Stream";
             this.sendToastNotificationToolStripMenuItem.Click += new System.EventHandler(this.sendToastNotificationToolStripMenuItem_Click);
             // 
             // panel1
@@ -289,6 +282,13 @@
             this.StreamerBoxTray.Visible = true;
             this.StreamerBoxTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StreamerBoxTray_MouseDoubleClick);
             // 
+            // refreshStreamsToolStripMenuItem1
+            // 
+            this.refreshStreamsToolStripMenuItem1.Name = "refreshStreamsToolStripMenuItem1";
+            this.refreshStreamsToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            this.refreshStreamsToolStripMenuItem1.Text = "Manually Refresh Streams";
+            this.refreshStreamsToolStripMenuItem1.Click += new System.EventHandler(this.refreshStreamsToolStripMenuItem1_Click);
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,7 +331,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addNewStreamerToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -350,5 +349,6 @@
         private System.Windows.Forms.ToolStripMenuItem sendToastNotificationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.NotifyIcon StreamerBoxTray;
+        private System.Windows.Forms.ToolStripMenuItem refreshStreamsToolStripMenuItem1;
     }
 }

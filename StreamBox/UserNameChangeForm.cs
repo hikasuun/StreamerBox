@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace StreamBox
 {
-    public partial class UserSettingsForm : Form
+    public partial class UserNameChangeForm : Form
     {
         private BaseForm form;
-        public UserSettingsForm(BaseForm frm)
+        public UserNameChangeForm(BaseForm frm)
         {
             InitializeComponent();
             form = frm;

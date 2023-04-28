@@ -66,7 +66,27 @@ namespace StreamBox
             form.setTimeZone(TimeZoneInfo.Local);
             // launch screen scraper
             runExecutable();
-            
+            // create lists
+            createStreamsList();
+            loadDone = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            panel2.Width += 10;
+            // add worker routines here
+            if (panel2.Width >= 800)
+            {
+                tickDone = true;
+            }
+            if (tickDone == true && loadDone == true)
+            {
+                this.Close();
+            }
+        }
+
+        private void createStreamsList()
+        {
             // creating Streams List 
             string[] streamLines = System.IO.File.ReadAllLines(@"..\..\Python\data.txt", Encoding.UTF8);
             int testing = streamLines.Length;
@@ -86,7 +106,6 @@ namespace StreamBox
                     {
                         streamerID = j;
                     }
-
                 }
 
                 // Use URL to extraxt URL Title
@@ -97,21 +116,6 @@ namespace StreamBox
                 form.addEventList(new StreamEvents(form.streamerList[streamerID], localTime, streamURL));
             }
             form.streamsList = form.streamsList.OrderBy(o => o.getStreamDate()).ToList();
-            loadDone = true;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            panel2.Width += 10;
-            // add worker routines here
-            if (panel2.Width >= 800)
-            {
-                tickDone = true;
-            }
-            if (tickDone == true && loadDone == true)
-            {
-                this.Close();
-            }
         }
 
         private void runExecutable()

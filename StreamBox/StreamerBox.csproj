@@ -129,11 +129,11 @@
       <DependentUpon>StreamerSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StreamEvents.cs" />
-    <Compile Include="UserSettingsForm.cs">
+    <Compile Include="UserNameChangeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserSettingsForm.Designer.cs">
-      <DependentUpon>UserSettingsForm.cs</DependentUpon>
+    <Compile Include="UserNameChangeForm.Designer.cs">
+      <DependentUpon>UserNameChangeForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="StreamerSettingsForm.resx">
       <DependentUpon>StreamerSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserSettingsForm.resx">
-      <DependentUpon>UserSettingsForm.cs</DependentUpon>
+    <EmbeddedResource Include="UserNameChangeForm.resx">
+      <DependentUpon>UserNameChangeForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

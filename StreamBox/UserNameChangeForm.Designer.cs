@@ -1,6 +1,6 @@
 ﻿namespace StreamBox
 {
-    partial class UserSettingsForm
+    partial class UserNameChangeForm
     {
         /// <summary>
         /// Required designer variable.

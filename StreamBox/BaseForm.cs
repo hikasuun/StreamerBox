@@ -53,7 +53,7 @@ namespace StreamBox
             monthCalendar.MaxDate = streamsList[streamsList.Count-1].getStreamDate();
             monthCalendar.MaxSelectionCount = 1;
 
-            TimeStatus.Text = DateTime.Now.ToString("hh:mm tt") + "   ";
+            TimeStatus.Text = DateTime.Now.ToString("HH:mm") + "   ";
             TimeZoneStatus.Text = userTimeZone.DisplayName.ToString() + "   ";
             UsernameStatus.Text = "Hello, " + userName + "  ";
 
@@ -97,7 +97,7 @@ namespace StreamBox
                 {
                     // send toast notification
                     LaunchToastNotification(streamsList[i].getStreamer().getStreamerName(),
-                        streamsList[i].getStreamURL());
+                                            streamsList[i].getStreamURL());
                 }
             }
         }
@@ -291,20 +291,25 @@ namespace StreamBox
 
         private void sendToastNotificationToolStripMenuItem_Click(object sender, EventArgs e) // checking time for streams
         {
-            var currentTime = DateTime.Now;
-            int found = 0;
-            for (int i = 0; i < streamsList.Count; i++)
-            {
-                // find which stream falls within the 0 <= x <= 30 min zone
-                TimeSpan duration = streamsList[i].getStreamDate().Subtract(currentTime);
-                if ((duration.TotalMinutes >= 0) && (streamsList[i].getStreamer().getVisible() == true) && found == 0)
+                var currentTime = DateTime.Now;
+                int found = 0;
+                for (int i = 0; i < streamsList.Count; i++)
                 {
-                    closestEvent = streamsList[i];
-                    found = 1;
+                    // find which stream falls within the 0 <= x <= 30 min zone
+                    TimeSpan duration = streamsList[i].getStreamDate().Subtract(currentTime);
+                    if ((duration.TotalMinutes >= 0) && (streamsList[i].getStreamer().getVisible() == true) && found == 0)
+                    {
+                        closestEvent = streamsList[i];
+                        found = 1;
+                    }
                 }
+            if (closestEvent == null)
+                MessageBox.Show("No streams selected");
+            else
+            {
+                this.Show();
+                LaunchToastNotification(closestEvent.getStreamer().getStreamerName(), closestEvent.getStreamURL());
             }
-            this.Show();
-            LaunchToastNotification(closestEvent.getStreamer().getStreamerName(), closestEvent.getStreamURL());
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

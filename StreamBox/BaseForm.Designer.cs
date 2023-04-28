@@ -32,13 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseForm));
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshStreamsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewStreamerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToastNotificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addNewStreamerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendToastNotificationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -54,7 +55,6 @@
             this.UsernameStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.StreamerBoxTray = new System.Windows.Forms.NotifyIcon(this.components);
-            this.refreshStreamsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -89,6 +89,37 @@
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Resize += new System.EventHandler(this.sendToTray);
             // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshStreamsToolStripMenuItem1,
+            this.addNewStreamerToolStripMenuItem,
+            this.sendToastNotificationToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.editToolStripMenuItem.Text = "Streams";
+            // 
+            // refreshStreamsToolStripMenuItem1
+            // 
+            this.refreshStreamsToolStripMenuItem1.Name = "refreshStreamsToolStripMenuItem1";
+            this.refreshStreamsToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            this.refreshStreamsToolStripMenuItem1.Text = "Manually Refresh Streams";
+            this.refreshStreamsToolStripMenuItem1.Click += new System.EventHandler(this.refreshStreamsToolStripMenuItem1_Click);
+            // 
+            // addNewStreamerToolStripMenuItem
+            // 
+            this.addNewStreamerToolStripMenuItem.Name = "addNewStreamerToolStripMenuItem";
+            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.addNewStreamerToolStripMenuItem.Text = "Streamer Display Toggles";
+            this.addNewStreamerToolStripMenuItem.Click += new System.EventHandler(this.addNewStreamerToolStripMenuItem_Click);
+            // 
+            // sendToastNotificationToolStripMenuItem
+            // 
+            this.sendToastNotificationToolStripMenuItem.Name = "sendToastNotificationToolStripMenuItem";
+            this.sendToastNotificationToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.sendToastNotificationToolStripMenuItem.Text = "Check Nearest Stream";
+            this.sendToastNotificationToolStripMenuItem.Click += new System.EventHandler(this.sendToastNotificationToolStripMenuItem_Click);
+            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -102,47 +133,23 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.settingsToolStripMenuItem.Text = "Change Username";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.aboutToolStripMenuItem.Text = "About Developer";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.exitToolStripMenuItem.Text = "Exit Program";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshStreamsToolStripMenuItem1,
-            this.addNewStreamerToolStripMenuItem,
-            this.sendToastNotificationToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.editToolStripMenuItem.Text = "Streams";
-            // 
-            // addNewStreamerToolStripMenuItem
-            // 
-            this.addNewStreamerToolStripMenuItem.Name = "addNewStreamerToolStripMenuItem";
-            this.addNewStreamerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.addNewStreamerToolStripMenuItem.Text = "Streamer Display Toggles";
-            this.addNewStreamerToolStripMenuItem.Click += new System.EventHandler(this.addNewStreamerToolStripMenuItem_Click);
-            // 
-            // sendToastNotificationToolStripMenuItem
-            // 
-            this.sendToastNotificationToolStripMenuItem.Name = "sendToastNotificationToolStripMenuItem";
-            this.sendToastNotificationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.sendToastNotificationToolStripMenuItem.Text = "Check Nearest Stream";
-            this.sendToastNotificationToolStripMenuItem.Click += new System.EventHandler(this.sendToastNotificationToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -281,13 +288,6 @@
             this.StreamerBoxTray.Text = "StreamerBox";
             this.StreamerBoxTray.Visible = true;
             this.StreamerBoxTray.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StreamerBoxTray_MouseDoubleClick);
-            // 
-            // refreshStreamsToolStripMenuItem1
-            // 
-            this.refreshStreamsToolStripMenuItem1.Name = "refreshStreamsToolStripMenuItem1";
-            this.refreshStreamsToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
-            this.refreshStreamsToolStripMenuItem1.Text = "Manually Refresh Streams";
-            this.refreshStreamsToolStripMenuItem1.Click += new System.EventHandler(this.refreshStreamsToolStripMenuItem1_Click);
             // 
             // BaseForm
             // 

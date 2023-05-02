@@ -1,4 +1,6 @@
-﻿using System;
+﻿// SplashScreen.cs
+// Splash screen that shows when application is loading
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,20 +20,20 @@ namespace StreamBox
 {
     public partial class SplashScreen : Form
     {
-        private BaseForm form;
+        private BaseForm form; // holds reference to BaseForm 
         public string userName;
         public TimeZoneInfo time;
-        private Boolean tickDone = false;
-        private Boolean loadDone = false;
-        private SaveStateHelper sth = null;
+        private Boolean tickDone = false; // used to synchronize work done, prevents null reference
+        private Boolean loadDone = false; // used to synchronize work done, prevents null reference
+        private SaveStateHelper sth = null; // Used for loading data from xml save file
         public SplashScreen(BaseForm frm)
         {
             InitializeComponent();
             form = frm;
             this.TopMost = true;
 
-            // check for first time user
-            if (System.IO.File.Exists(@"..\..\saveState.xml"))
+            // check if user is not first time user
+            if (System.IO.File.Exists(@"..\..\saveState.xml")) 
             {
                 sth = new SaveStateHelper();
                 sth.readUserState(@"..\..\saveState.xml");
@@ -42,13 +44,14 @@ namespace StreamBox
                 }
 
             }
-            else
+            else // user is first time user
             {
                 FirstTimeUserForm Splashform = new FirstTimeUserForm(this);
                 Splashform.ShowDialog();
 
                 form.setUserName(userName);
                 form.setTimeZone(time);
+                // build basic talent list for customization later
                 string[] lines = System.IO.File.ReadAllLines(@"..\..\InfoStreamer.txt", Encoding.UTF8);
                 for (int i = 4; i < lines.Length; i += 5) // read a set ( 5 lines ) at a time for each streamer
                 {
@@ -71,10 +74,10 @@ namespace StreamBox
             loadDone = true;
         }
 
+        // for visual feedback, otherwise does nothing
         private void timer1_Tick(object sender, EventArgs e)
         {
             panel2.Width += 10;
-            // add worker routines here
             if (panel2.Width >= 800)
             {
                 tickDone = true;
@@ -115,7 +118,7 @@ namespace StreamBox
                 // create event and add to BaseForm's streamEvents list
                 form.addEventList(new StreamEvents(form.streamerList[streamerID], localTime, streamURL));
             }
-            form.streamsList = form.streamsList.OrderBy(o => o.getStreamDate()).ToList();
+            form.streamsList = form.streamsList.OrderBy(o => o.getStreamDate()).ToList(); // order streams by chronological order
         }
 
         private void runExecutable()
@@ -129,7 +132,7 @@ namespace StreamBox
 
             try
             {
-                using (Process proc = Process.Start(executable))
+                using (Process proc = Process.Start(executable)) // launch screen scraper
                 {
                     proc.WaitForExit();
                 }

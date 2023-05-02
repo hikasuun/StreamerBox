@@ -1,4 +1,6 @@
-﻿using System;
+﻿// UserNameChangeForm.cs
+// used to change the user's username
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,18 +21,18 @@ namespace StreamBox
             form = frm;
         }
 
-        private void DiscardBtn_Click(object sender, EventArgs e)
+        private void DiscardBtn_Click(object sender, EventArgs e) // discard change
         {
             this.Close();
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBox1.Text))
+            if (String.IsNullOrEmpty(textBox1.Text)) // check for empty field
             {
                 MessageBox.Show("Please do not leave field blanks.");
             }
-            else
+            else // save
             {
                 form.setUserName(textBox1.Text);
 

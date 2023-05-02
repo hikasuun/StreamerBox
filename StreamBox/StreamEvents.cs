@@ -1,4 +1,6 @@
-﻿using System;
+﻿// StreamEvents.cs
+// Class to hold information about individual streams
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +13,14 @@ namespace StreamBox
         private Streamer streamerName;
         private DateTime streamDateTime;
         private Uri streamURL;
-        //private string streamTitle;
+        //private string streamTitle; // TO BE ADDED IN FUTURE UPDATE
 
         public StreamEvents(Streamer s, DateTime d, Uri u)
         {
             this.streamerName = s;
             this.streamDateTime = d;
             this.streamURL = u;
-            //this.streamTitle = t;
+            //this.streamTitle = t; 
         }
 
         public Streamer getStreamer() { return streamerName;}

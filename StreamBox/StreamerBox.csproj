@@ -116,12 +116,6 @@
     <Compile Include="StreamerInfo.Designer.cs">
       <DependentUpon>StreamerInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="StreamerInfoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StreamerInfoForm.Designer.cs">
-      <DependentUpon>StreamerInfoForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="StreamerSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,9 +156,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StreamerInfo.resx">
       <DependentUpon>StreamerInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StreamerInfoForm.resx">
-      <DependentUpon>StreamerInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StreamerSettingsForm.resx">
       <DependentUpon>StreamerSettingsForm.cs</DependentUpon>

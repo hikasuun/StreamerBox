@@ -1,4 +1,8 @@
-﻿using System;
+﻿// SaveStateHelper.cs
+// Class that facilitates generic data being converted 
+// to a form that SOAP can serialize
+// and load from .xml file and convert back into generic data
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -53,7 +57,7 @@ namespace StreamBox
             localStream.Close();
         }
 
-        public void arrayToList()
+        public void arrayToList() // converts array to generic list
         {
             foreach (Streamer streamer in currentSaveState.StreamerArrayList)
             {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Streamer.cs
+// Class for holding information about streamer/talent
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

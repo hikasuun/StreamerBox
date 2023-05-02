@@ -1,4 +1,6 @@
-﻿using System;
+﻿// FirstTimeUserForm.cs
+// Form for setting username when user launches application for first time
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -25,7 +27,7 @@ namespace StreamBox
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (String.IsNullOrEmpty(userNameTxtBox.Text))
+            if (String.IsNullOrEmpty(userNameTxtBox.Text)) // check for empty field
             {
                 MessageBox.Show("Please do not leave field blanks.");
             }

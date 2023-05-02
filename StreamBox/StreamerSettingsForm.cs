@@ -1,4 +1,6 @@
-﻿using System;
+﻿// StreamerSettingsForm.cs
+// allows user to customize visibility (whether to be notified) of talents
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +15,14 @@ namespace StreamBox
     public partial class StreamerSettingsForm : Form
     {
         private BaseForm form;
-        private int jptoggle, entoggle, idtoggle, tgl = 0;
+        private int jptoggle, entoggle, idtoggle, tgl = 0; // toggles for mass visibility toggling
         public StreamerSettingsForm(BaseForm frm)
         {
             InitializeComponent();
             form = frm;
             this.TopMost = true;
 
+            // add streamers to list with visibility toggled off or on (DEFAULT IS ON FOR NEW USER)
             for (int i = 0; i <= form.streamerList.Count()-1; i++)
             {
                 StreamerCheckBoxes.Items.Add(form.streamerList[i].getStreamerName(), form.streamerList[i].getVisible());
@@ -37,6 +40,7 @@ namespace StreamBox
             }
         }
 
+        // save changes
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i <= form.streamerList.Count() - 1; i++)
@@ -66,11 +70,13 @@ namespace StreamBox
             this.Close();
         }
 
+        // dont save changes
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // toggles visibility for JP (HOLOLIVE) Branch
         private void JPBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i <= form.streamerList.Count() - 1; i++)
@@ -93,6 +99,7 @@ namespace StreamBox
             else jptoggle = 0;
         }
 
+        // toggles visibility for ALL streamers / talents
         private void alltoggle_Click(object sender, EventArgs e)
         {
             for (int i = 0; i <= form.streamerList.Count() - 1; i++)
@@ -112,6 +119,7 @@ namespace StreamBox
             else tgl= 0;
         }
 
+        // toggles visibility for EN (HOLOEN) Branch
         private void ENBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i <= form.streamerList.Count() - 1; i++)
@@ -134,6 +142,7 @@ namespace StreamBox
             else entoggle = 0;
         }
 
+        // toggles visibility for ID (HOLOID) Branch
         private void IDBtn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i <= form.streamerList.Count() - 1; i++)

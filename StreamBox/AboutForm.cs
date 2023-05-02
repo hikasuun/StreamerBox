@@ -1,4 +1,6 @@
-﻿using System;
+﻿// AboutForm.cs
+// About Window of the developer
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// RefreshForm.cs
+// Form to show when stream list is refreshing
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +17,7 @@ namespace StreamBox
 {
     public partial class RefreshForm : Form
     {
-        private BaseForm form;
+        private BaseForm form; // holds reference to original BaseForm
         public RefreshForm(BaseForm frm)
         {
             InitializeComponent();
@@ -59,7 +61,7 @@ namespace StreamBox
                 // create event and add to BaseForm's streamEvents list
                 form.addEventList(new StreamEvents(form.streamerList[streamerID], localTime, streamURL));
             }
-            form.streamsList = form.streamsList.OrderBy(o => o.getStreamDate()).ToList();
+            form.streamsList = form.streamsList.OrderBy(o => o.getStreamDate()).ToList(); // order streams by chronological order
             this.Close();
         }
 
@@ -74,7 +76,7 @@ namespace StreamBox
 
             try
             {
-                using (Process proc = Process.Start(executable))
+                using (Process proc = Process.Start(executable)) // launch screen scraper routine
                 {
                     proc.WaitForExit();
                 }

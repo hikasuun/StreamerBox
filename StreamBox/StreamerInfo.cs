@@ -1,4 +1,6 @@
-﻿using StreamBox;
+﻿// StreamerInfo.cs
+// Window to show information about individual talent
+using StreamBox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +27,7 @@ namespace StreamerBox
             this.Text = talent.getStreamerName(); // changes name of window to talent
             TalentNameLabel.Text = talent.getStreamerName();
             TalentBranchLabel.Text = talent.getBranch();
-            string path = @"..\..\VTuberProfilePictures\" + talent.getStreamerName() + ".png";
+            string path = @"..\..\VTuberProfilePictures\" + talent.getStreamerName() + ".png"; // gets talent image from application image folder
             TalentImage.Image = Image.FromFile(path);
             this.StartPosition = FormStartPosition.CenterParent;
         }

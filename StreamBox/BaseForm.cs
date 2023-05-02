@@ -1,4 +1,6 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
+﻿// BaseForm.cs
+// Base Form for StreamerBox Application
+using Microsoft.Toolkit.Uwp.Notifications;
 using StreamerBox;
 using System;
 using System.Collections.Generic;
@@ -49,13 +51,14 @@ namespace StreamBox
             SplashScreen splashScreen = new SplashScreen(this);
             splashScreen.ShowDialog();
 
+            //sets date range in calendar
             monthCalendar.MinDate = streamsList[0].getStreamDate();
             monthCalendar.MaxDate = streamsList[streamsList.Count-1].getStreamDate();
             monthCalendar.MaxSelectionCount = 1;
 
-            TimeStatus.Text = DateTime.Now.ToString("HH:mm") + "   ";
-            TimeZoneStatus.Text = userTimeZone.DisplayName.ToString() + "   ";
-            UsernameStatus.Text = "Hello, " + userName + "  ";
+            TimeStatus.Text = DateTime.Now.ToString("HH:mm") + "   "; // sets time
+            TimeZoneStatus.Text = userTimeZone.DisplayName.ToString() + "   "; // sets timezone
+            UsernameStatus.Text = "Hello, " + userName + "  "; // sets username
 
             fifteenMinTimer = new System.Timers.Timer(1000 * 60 * 15); // every 15 min check
             fifteenMinTimer.AutoReset = true;
@@ -141,7 +144,7 @@ namespace StreamBox
             StreamerSettingsForm frm = new StreamerSettingsForm(this);
             frm.Show();
             frm.TopMost = true;
-            // show streamer settings
+            // show streamer visibility settings
             monthCalendar.MinDate = streamsList[0].getStreamDate();
             monthCalendar.MaxDate = streamsList[streamsList.Count - 1].getStreamDate();
             monthCalendar.MaxSelectionCount = 1;
@@ -154,6 +157,7 @@ namespace StreamBox
             DateTime selectedDateStart = monthCalendar.SelectionStart.Date;
             DateTime selectedDateEnd = selectedDateStart.AddHours(23).AddMinutes(59).AddSeconds(59);
 
+            // adds streams to list to view
             for (int i = 0; i < streamsList.Count-1; i++)
             {
                 if ((streamsList[i].getStreamDate() >= selectedDateStart && streamsList[i].getStreamDate() <= selectedDateEnd) &&
@@ -168,6 +172,7 @@ namespace StreamBox
             }
         }
 
+        // allows for cursor to change to hand for user readability
         private void streamsListView_MouseMove(object sender, MouseEventArgs e)
         {
             var info = streamsListView.HitTest(e.Location);
@@ -184,6 +189,7 @@ namespace StreamBox
             }
         }
 
+        // allows clicking of "links"
         private void streamsListView_MouseUp(object sender, MouseEventArgs e)
         {
             var hit = streamsListView.HitTest(e.Location);
@@ -262,6 +268,7 @@ namespace StreamBox
 
         }
 
+        // creates toast notification and sends
         private void LaunchToastNotification(string name, Uri url)
         {
             ToastNotificationManagerCompat.OnActivated += toastArgs =>
@@ -289,6 +296,7 @@ namespace StreamBox
                 });
         }
 
+        // manually calls toast notification launch
         private void sendToastNotificationToolStripMenuItem_Click(object sender, EventArgs e) // checking time for streams
         {
                 var currentTime = DateTime.Now;
@@ -304,11 +312,11 @@ namespace StreamBox
                     }
                 }
             if (closestEvent == null)
-                MessageBox.Show("No streams selected");
+                MessageBox.Show("No streams selected"); // prevents issue of not having streams selected
             else
             {
                 this.Show();
-                LaunchToastNotification(closestEvent.getStreamer().getStreamerName(), closestEvent.getStreamURL());
+                LaunchToastNotification(closestEvent.getStreamer().getStreamerName(), closestEvent.getStreamURL()); // launch toast notification
             }
         }
 

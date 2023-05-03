@@ -13,19 +13,16 @@ namespace StreamBox
         private Streamer streamerName;
         private DateTime streamDateTime;
         private Uri streamURL;
-        //private string streamTitle; // TO BE ADDED IN FUTURE UPDATE
 
         public StreamEvents(Streamer s, DateTime d, Uri u)
         {
             this.streamerName = s;
             this.streamDateTime = d;
             this.streamURL = u;
-            //this.streamTitle = t; 
         }
 
         public Streamer getStreamer() { return streamerName;}
         public DateTime getStreamDate() { return streamDateTime;}
         public Uri getStreamURL() { return streamURL;}
-        //public string getStreamTitle() { return streamTitle;}
     }
 }

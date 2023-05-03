@@ -10,9 +10,9 @@ namespace StreamBox
 {
     public class StreamEvents
     {
-        private Streamer streamerName;
-        private DateTime streamDateTime;
-        private Uri streamURL;
+        private Streamer streamerName; // holds streamer object
+        private DateTime streamDateTime; // holds date and time of event
+        private Uri streamURL; // holds url to stream
 
         public StreamEvents(Streamer s, DateTime d, Uri u)
         {

@@ -33,6 +33,7 @@ namespace StreamBox
         private SaveStateHelper sth = null; // helps to save/load relevant data during closing/opening of app
         private System.Timers.Timer fifteenMinTimer; // helps to keep track of what is closest stream
         private System.Timers.Timer dayCheckTimer; // checks every day for new streams
+        private System.Timers.Timer timeUpdateTimer; // updates the time in the form
         private StreamEvents closestEvent; // used to push a notification on button press
 
         // helpers for clicking links
@@ -69,6 +70,11 @@ namespace StreamBox
             dayCheckTimer.AutoReset = true;
             dayCheckTimer.Elapsed += new ElapsedEventHandler(dayRefresh);
             dayCheckTimer.Start();
+
+            timeUpdateTimer = new System.Timers.Timer(1000 * 15); // every 15 seconds refresh time
+            timeUpdateTimer.AutoReset = true;
+            timeUpdateTimer.Elapsed += new ElapsedEventHandler(updateTime);
+            timeUpdateTimer.Start();
         }
 
         private void fifteenMinCheck(object source, ElapsedEventArgs e)
@@ -86,6 +92,11 @@ namespace StreamBox
                         streamsList[i].getStreamURL());
                 }
             }
+        }
+
+        private void updateTime(object source, ElapsedEventArgs e) // update time in form
+        {
+            TimeStatus.Text = DateTime.Now.ToString("HH:mm") + "   ";
         }
 
         private void streamCheck()
@@ -374,12 +385,14 @@ namespace StreamBox
         {
             fifteenMinTimer.Start();
             dayCheckTimer.Start();
+            timeUpdateTimer.Start();
         }
 
         private void timerStop()
         {
             fifteenMinTimer.Stop();
             dayCheckTimer.Stop();
+            timeUpdateTimer.Stop();
         }
         
     }

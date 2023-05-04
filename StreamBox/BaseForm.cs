@@ -71,7 +71,7 @@ namespace StreamBox
             dayCheckTimer.Elapsed += new ElapsedEventHandler(dayRefresh);
             dayCheckTimer.Start();
 
-            timeUpdateTimer = new System.Timers.Timer(1000 * 15); // every 15 seconds refresh time
+            timeUpdateTimer = new System.Timers.Timer(1000); // every second refresh time
             timeUpdateTimer.AutoReset = true;
             timeUpdateTimer.Elapsed += new ElapsedEventHandler(updateTime);
             timeUpdateTimer.Start();
